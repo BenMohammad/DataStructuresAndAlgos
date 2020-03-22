@@ -13,18 +13,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int[] intArray = new int[7];
+        int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
-        intArray[0] = 20;
-        intArray[1] = 35;
-        intArray[2] = -15;
-        intArray[3] = 7;
-        intArray[4] = 55;
-        intArray[5] = 1;
-        intArray[6] = -22;
+        bubbleSort(intArray);
 
 
-        Log.v(TAG, retrievWithoutIndex(intArray,7));
+        //Log.v(TAG, retrievWithoutIndex(intArray,7));
+
 
 
 
@@ -43,4 +38,31 @@ public class MainActivity extends AppCompatActivity {
         return index + " is the index";
 
     }
+
+    public void swap(int[] array, int i, int j) {
+        if(i == j) {
+            return;
+        }
+
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+
+    }
+
+    private void bubbleSort(int[] input) {
+        for(int lastSortedIndex = input.length - 1; lastSortedIndex > 0; lastSortedIndex--) {
+            for(int i = 0; i < lastSortedIndex; i++) {
+                if(input[i] > input[i+1]) {
+                    swap(input, i, i + 1);
+                }
+            }
+        }
+
+        for(int i = 0; i < input.length; i++) {
+            Log.v(TAG, input[i] + "");
+        }
+
+    }
+
 }
