@@ -15,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
-        insertionSort(intArray);
+
+        shellSort(intArray);
+        //insertionSort(intArray);
         //selectionSort(intArray);
         //bubbleSort(intArray);
         //Log.v(TAG, retrievWithoutIndex(intArray,7));
@@ -23,6 +25,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void shellSort(int[] input) {
+        for(int gap = input.length / 2; gap > 0; gap /= 2) {
+
+            for(int i = gap; i < input.length; i++) {
+                int newElement = input[i];
+
+                int j = i;
+                while(j >= gap && input[j - gap] > newElement) {
+                    input[j] = input[j - gap];
+                    j -= gap;
+                }
+
+                input[j] = newElement;
+            }
+
+        }
+        for(int i = 0; i < input.length; i++) {
+            Log.v(TAG, input[i]+ "");
+        }
     }
 
     private void insertionSort(int[] input) {
