@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity {
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
 
-        shellSort(intArray);
+        Log.v(TAG, iterativeFactorial(3) + "");
+        Log.v(TAG, recursiveFactorial(3) + "");
+
+        //shellSort(intArray);
         //insertionSort(intArray);
         //selectionSort(intArray);
         //bubbleSort(intArray);
@@ -121,6 +124,27 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < input.length; i++) {
             Log.v(TAG, input[i] + "");
         }
+    }
+
+    public int recursiveFactorial(int num) {
+        if(num == 0) {
+            return 1;
+        }
+
+        return num * recursiveFactorial(num - 1);
+    }
+
+    public int iterativeFactorial(int num) {
+        if(num == 0) {
+            return 1;
+        }
+
+        int factorial = 1;
+        for(int i = 1; i <= num; i++) {
+            factorial *= i;
+        }
+
+        return factorial;
     }
 
 }
