@@ -15,9 +15,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
-        bubbleSort(intArray);
-
-
+        selectionSort(intArray);
+        //bubbleSort(intArray);
         //Log.v(TAG, retrievWithoutIndex(intArray,7));
 
 
@@ -63,6 +62,25 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, input[i] + "");
         }
 
+    }
+
+
+    private void selectionSort(int[] input) {
+        //O(n²) time complexity
+
+        for(int lastUnsortedIndex = input.length - 1; lastUnsortedIndex > 0; lastUnsortedIndex--) {
+            int largest = 0;
+            for(int i = 1; i <= lastUnsortedIndex; i++) {
+                if(input[i] > input[largest]) {
+                    largest = i;
+                }
+            }
+            swap(input, largest, lastUnsortedIndex);
+        }
+
+        for(int i = 0; i < input.length; i++) {
+            Log.v(TAG, input[i] + "");
+        }
     }
 
 }
