@@ -15,13 +15,30 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
-        selectionSort(intArray);
+        insertionSort(intArray);
+        //selectionSort(intArray);
         //bubbleSort(intArray);
         //Log.v(TAG, retrievWithoutIndex(intArray,7));
 
 
 
 
+    }
+
+    private void insertionSort(int[] input) {
+        for(int firstUnsortedIndex = 1; firstUnsortedIndex < input.length; firstUnsortedIndex++) {
+            int newElement = input[firstUnsortedIndex];
+
+            int i;
+            for(i = firstUnsortedIndex; i > 0 && input[i - 1] > newElement; i--) {
+                input[i] = input[i - 1];
+            }
+
+            input[i] = newElement;
+        }
+        for(int i = 0; i < input.length; i++) {
+            Log.v(TAG, input[i] + "");
+        }
     }
 
     private String retrievWithoutIndex(int[] input,int value) {
