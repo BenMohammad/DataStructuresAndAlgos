@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
-
-        mergeSort(intArray, 0, intArray.length);
+        quickSort(intArray, 0, intArray.length);
+        //mergeSort(intArray, 0, intArray.length);
 
         for(int i = 0; i< intArray.length; i++) {
             Log.v(TAG, intArray[i]+ "");
@@ -34,6 +34,38 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void quickSort(int[] input, int start, int end) {
+        if(end - start < 2) {
+            return;
+        }
+        int pivotIndex = partition(input, start, end);
+        quickSort(input, start, pivotIndex);
+        quickSort(input, pivotIndex + 1, end);
+
+    }
+
+    private int partition(int[] input, int start, int end) {
+        int pivot = input[start];
+        int i = start;
+        int j = end;
+
+        while(i < j) {
+
+            while(i < j && input[--j] >= pivot);
+            if(i < j) {
+                input[i] = input[j];
+            }
+
+            while(i < j && input[++i] <= pivot);
+            if(i < j) {
+                input[j] = input[i];
+            }
+        }
+
+        input[j] = pivot;
+        return j;
     }
 
     private void mergeSort(int[] input, int start, int end) {
