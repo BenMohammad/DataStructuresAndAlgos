@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "D&A";
@@ -13,16 +15,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //int[] intArray = {20, 35, -15, 7, 55, 1, -22};
+        int[] intArray = {20, 35, -15, 7, 55, 1, -22};
+
+
+        Arrays.parallelSort(intArray);
+
+        for(int i = 0; i < intArray.length; i++) {
+            Log.v(TAG, intArray[i] + "");
+        }
+
+
         //int[] intArray = {2,5,9,8,2,8, 7, 10, 4, 3};
 
-        int[] radixArray = {4725, 4586, 1330, 8792, 1594, 5729};
-
-
-        radixSort(radixArray, 10, 4);
-        for(int i = 0; i < radixArray.length; i++) {
-            Log.v(TAG, radixArray[i] + "");
-        }
+//        int[] radixArray = {4725, 4586, 1330, 8792, 1594, 5729};
+//
+//
+//        radixSort(radixArray, 10, 4);
+//
         //quickSort(intArray, 0, intArray.length);
         //mergeSort(intArray, 0, intArray.length);
         //countingSort(intArray, 1, 10);
