@@ -14,15 +14,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //int[] intArray = {20, 35, -15, 7, 55, 1, -22};
-        int[] intArray = {2,5,9,8,2,8, 7, 10, 4, 3};
+        //int[] intArray = {2,5,9,8,2,8, 7, 10, 4, 3};
 
+        int[] radixArray = {4725, 4586, 1330, 8792, 1594, 5729};
+
+
+        radixSort(radixArray, 10, 4);
+        for(int i = 0; i < radixArray.length; i++) {
+            Log.v(TAG, radixArray[i] + "");
+        }
         //quickSort(intArray, 0, intArray.length);
         //mergeSort(intArray, 0, intArray.length);
-        countingSort(intArray, 1, 10);
+        //countingSort(intArray, 1, 10);
 
-        for(int i = 0; i< intArray.length; i++) {
-            Log.v(TAG, intArray[i]+ "");
-        }
+//        for(int i = 0; i< intArray.length; i++) {
+//            Log.v(TAG, intArray[i]+ "");
+//        }
 
         //Log.v(TAG, iterativeFactorial(3) + "");
         //Log.v(TAG, recursiveFactorial(3) + "");
@@ -36,6 +43,45 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void radixSort(int[] input, int radix, int width) {
+        for(int i = 0; i < width; i++) {
+            radixSingleSort(input, i, radix);
+        }
+
+
+    }
+
+
+    private void radixSingleSort(int[] input, int position, int radix) {
+        int numItems = input.length;
+        int[] countArray = new int[radix];
+
+        for(int value : input) {
+
+            countArray[getDigit(position, value, radix)]++;
+
+        }
+
+        for(int j = 1; j < radix; j++) {
+            countArray[j] += countArray[j - 1];
+        }
+
+        int[] temp = new int[numItems];
+        for(int tempIndex = numItems - 1; tempIndex >= 0; tempIndex--) {
+            temp[--countArray[getDigit(position, input[tempIndex], radix)]] = input[tempIndex];
+        }
+
+        for(int tempIndex = 0; tempIndex < numItems; tempIndex++) {
+            input[tempIndex] = temp[tempIndex];
+        }
+
+
+    }
+
+    private int getDigit(int position, int value, int radix) {
+        return value / (int) Math.pow(radix, position) % radix;
     }
 
     private void countingSort(int[] input, int min, int max) {
