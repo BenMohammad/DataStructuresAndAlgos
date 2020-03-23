@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Arrays.parallelSort(intArray);
 
-        mergeSort(intArray, 0, intArray.length);
+        //mergeSort(intArray, 0, intArray.length);
+
+        recursiveInsertionSort(intArray, intArray.length);
 
         for(int i = 0; i < intArray.length; i++) {
             Log.v(TAG, intArray[i] + "");
@@ -210,6 +212,31 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, input[i] + "");
         }
     }
+
+
+    private void recursiveInsertionSort(int[] input, int numItems) {
+
+        if(numItems < 2) {
+            return;
+        }
+
+        recursiveInsertionSort(input, numItems - 1);
+
+        int newElement = input[numItems - 1];
+
+        int i;
+        for(i = numItems - 1; i > 0 && input[i -1] > newElement; i--) {
+            input[i] = input[i - 1];
+        }
+
+        input[i]  = newElement;
+
+
+
+
+
+    }
+
 
     private String retrievWithoutIndex(int[] input,int value) {
         //O(1) Time complexity with index for retrieval
