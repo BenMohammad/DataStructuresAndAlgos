@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
         int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
 
-        Arrays.parallelSort(intArray);
+        //Arrays.parallelSort(intArray);
+
+        mergeSort(intArray, 0, intArray.length);
 
         for(int i = 0; i < intArray.length; i++) {
             Log.v(TAG, intArray[i] + "");
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 //        radixSort(radixArray, 10, 4);
 //
         //quickSort(intArray, 0, intArray.length);
-        //mergeSort(intArray, 0, intArray.length);
+
         //countingSort(intArray, 1, 10);
 
 //        for(int i = 0; i< intArray.length; i++) {
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void merge(int[] input, int start, int mid, int end) {
-        if(input[mid - 1] < input[mid]) {
+        if(input[mid - 1] > input[mid]) {
             return;
         }
 
@@ -165,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
         int[] temp = new int[end - start];
         while(i < mid && j < end) {
-            temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++];
+            temp[tempIndex++] = input[i] >= input[j] ? input[i++] : input[j++];
         }
 
         System.arraycopy(input, i, input, start + tempIndex, mid - i);
