@@ -4,6 +4,7 @@ public class EmployeeNode {
 
     private Employee employee;
     private EmployeeNode next;
+    private EmployeeNode prev;
 
     public EmployeeNode(Employee employee) {
         this.employee = employee;
@@ -23,6 +24,14 @@ public class EmployeeNode {
 
     public void setNext(EmployeeNode next) {
         this.next = next;
+    }
+
+    public EmployeeNode getPrev() {
+        return prev;
+    }
+
+    public void setPrev(EmployeeNode prev) {
+        this.prev = prev;
     }
 
     public String toString() {
