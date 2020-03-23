@@ -15,17 +15,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int[] intArray = {20, 35, -15, 7, 55, 1, -22};
+        //int[] intArray = {20, 35, -15, 7, 55, 1, -22};
 
+        String[] stringArray = {"bcdef", "dbaqc", "abcde", "omadd", "bbbbb"};
 
         //Arrays.parallelSort(intArray);
 
         //mergeSort(intArray, 0, intArray.length);
 
-        recursiveInsertionSort(intArray, intArray.length);
+        //recursiveInsertionSort(intArray, intArray.length);
+        radixSort(stringArray, 26, 5);
 
-        for(int i = 0; i < intArray.length; i++) {
-            Log.v(TAG, intArray[i] + "");
+        for(int i = 0; i < stringArray.length; i++) {
+            Log.v(TAG, stringArray[i]);
         }
 
 
@@ -58,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void radixSort(int[] input, int radix, int width) {
-        for(int i = 0; i < width; i++) {
+    private void radixSort(String[] input, int radix, int width) {
+        for(int i = width - 1; i >= 0; i--) {
             radixSingleSort(input, i, radix);
         }
 
@@ -67,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void radixSingleSort(int[] input, int position, int radix) {
+    private void radixSingleSort(String[] input, int position, int radix) {
         int numItems = input.length;
         int[] countArray = new int[radix];
 
-        for(int value : input) {
+        for(String value : input) {
 
-            countArray[getDigit(position, value, radix)]++;
+            countArray[getIndex(position, value)]++;
 
         }
 
@@ -81,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
             countArray[j] += countArray[j - 1];
         }
 
-        int[] temp = new int[numItems];
+        String[] temp = new String[numItems];
         for(int tempIndex = numItems - 1; tempIndex >= 0; tempIndex--) {
-            temp[--countArray[getDigit(position, input[tempIndex], radix)]] = input[tempIndex];
+            temp[--countArray[getIndex(position, input[tempIndex])]] = input[tempIndex];
         }
 
         for(int tempIndex = 0; tempIndex < numItems; tempIndex++) {
@@ -316,6 +318,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return factorial;
+    }
+
+    public int getIndex(int posistion, String value) {
+        return value.charAt(posistion) - 'a';
     }
 
 }
