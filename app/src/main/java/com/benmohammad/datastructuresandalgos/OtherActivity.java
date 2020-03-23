@@ -17,13 +17,27 @@ public class OtherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Employee> employeeList = new Vector<>();
-        employeeList.add(new Employee("Jane", "Jones", 123));
-        employeeList.add(new Employee("John", "Doe", 4567));
-        employeeList.add(new Employee("Mary", "Smith", 22));
-        employeeList.add(new Employee("mike", "Wilson", 3245));
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
 
-        employeeList.forEach(employee -> Log.v(TAG, employee.getFirstName()));
+        EmployeeLinkedList list = new EmployeeLinkedList();
+        Log.v(TAG, list.isEmpty()+" should be true");
+
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+
+
+        list.printList();
+
+
+
+        list.removeFromFront();
+        list.printList();
+
 
     }
 }
